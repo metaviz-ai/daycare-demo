@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Page settings: text encoding, mobile-friendly scaling, and the title and
+         description shown in the browser tab and search results -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Sprouts Daycare | Caring Childcare for Ages 6 Weeks to 5 Years</title>
+    <meta name="description" content="Little Sprouts Daycare offers warm, play-based care for infants, toddlers and preschoolers. Book a visit today.">
+
+    <!-- Small sprout icon shown in the browser tab -->
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+
+    <!-- Google Fonts: loads "Nunito", a friendly and easy-to-read font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+
+    <!-- Our one shared stylesheet, used by every page -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link: lets keyboard users jump straight past the menu to the page content -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== Site header: logo and main navigation (the same on every page) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html">
+                <img src="images/logo.svg" alt="" width="40" height="40">
+                Little Sprouts Daycare
+            </a>
+
+            <!-- Hamburger button: only shows on small screens. main.js opens and closes the menu. -->
+            <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+            </button>
+
+            <!-- Main navigation. main.js highlights the link for the page you're on. -->
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="about.html">About</a></li>
+                    <li><a class="nav-link" href="programs.html">Programs</a></li>
+                    <li><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== Main content: everything unique to this page goes inside <main> ===== -->
+    <main id="main">
+
+        <!-- Hero: the big welcome area with our headline and main call to action -->
+        <section class="hero">
+            <div class="container split">
+                <div>
+                    <h1>A happy place to learn, play and grow</h1>
+                    <p class="hero-intro">At Little Sprouts, children aged 6 weeks to 5 years spend their days feeling safe, loved and busy exploring, so you can head to work knowing they're in caring hands.</p>
+                    <a class="button button-accent" href="contact.html">Book a Visit</a>
+                </div>
+                <!-- Placeholder image. To use your own photo, save it in the images/ folder
+                     and change src to something like "images/hero.jpg". -->
+                <img class="split-image" src="https://placehold.co/800x600/e8f4ec/2f7d55?text=Children+at+Play" alt="Children playing together in a bright classroom" width="800" height="600">
+            </div>
+        </section>
+
+        <!-- Why choose us: three cards with the main reasons parents pick Little Sprouts -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why choose us?</h2>
+                <p class="section-intro">Choosing childcare is a big decision. Here's what makes Little Sprouts feel like a second home.</p>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">💛</span>
+                        <h3>Caring, qualified team</h3>
+                        <p>Our friendly staff are fully trained in early years education, first aid and child safety.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">🏡</span>
+                        <h3>Safe, welcoming spaces</h3>
+                        <p>Bright, secure rooms and a fenced garden designed just for little ones to explore.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">🎨</span>
+                        <h3>Learning through play</h3>
+                        <p>Stories, music, art and outdoor adventures that build confidence and curiosity every day.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs preview: a quick look at our three age groups, each linking to its full details -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Our programs</h2>
+                <p class="section-intro">Every stage of early childhood is special. Each program is shaped around what your child needs right now.</p>
+
+                <div class="card-grid">
+                    <article class="card program-card">
+                        <img src="https://placehold.co/600x400/fdebdc/2d2a26?text=Infant+Room" alt="Cosy infant room with soft play mats and toys" width="600" height="400" loading="lazy">
+                        <div class="program-card-body">
+                            <h3>Infant</h3>
+                            <p class="age-range">6 weeks – 12 months</p>
+                            <p>Gentle, one-to-one care that follows your baby's own routine for feeding, sleep and play.</p>
+                            <a href="programs.html#infant">More about Infant care</a>
+                        </div>
+                    </article>
+                    <article class="card program-card">
+                        <img src="https://placehold.co/600x400/fdebdc/2d2a26?text=Toddler+Room" alt="Toddlers building with colourful blocks" width="600" height="400" loading="lazy">
+                        <div class="program-card-body">
+                            <h3>Toddler</h3>
+                            <p class="age-range">1 – 3 years</p>
+                            <p>Busy days of exploring, first words, making friends and growing independence.</p>
+                            <a href="programs.html#toddler">More about Toddler care</a>
+                        </div>
+                    </article>
+                    <article class="card program-card">
+                        <img src="https://placehold.co/600x400/fdebdc/2d2a26?text=Preschool+Room" alt="Preschoolers reading a picture book together" width="600" height="400" loading="lazy">
+                        <div class="program-card-body">
+                            <h3>Preschool</h3>
+                            <p class="age-range">3 – 5 years</p>
+                            <p>Early reading, numbers and social skills that get children ready for big school.</p>
+                            <a href="programs.html#preschool">More about Preschool</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial: THIS IS A SAMPLE. Replace the quote and name with real feedback
+             from a parent (and ask their permission first). -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">What parents say</h2>
+                <p class="sample-note">Sample testimonial — replace with real ones</p>
+
+                <figure class="card testimonial">
+                    <blockquote>“Our daughter runs in every morning with a big smile. The team keeps us updated all day, and we always know she's safe and happy.”</blockquote>
+                    <figcaption>— Sample Parent, parent of a 2-year-old</figcaption>
+                </figure>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Site footer: address, contact details and opening hours (the same on every page) ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-title">Find us</h2>
+                    <!-- Placeholder address: replace with your real one -->
+                    <address>
+                        Little Sprouts Daycare<br>
+                        123 Placeholder Street<br>
+                        Your Town, AB1 2CD
+                    </address>
+                </div>
+                <div>
+                    <h2 class="footer-title">Get in touch</h2>
+                    <p>
+                        Phone: <a href="tel:+15551234567">(555) 123-4567</a><br>
+                        Email: <a href="mailto:hello@example.com">hello@example.com</a>
+                    </p>
+                </div>
+                <div>
+                    <h2 class="footer-title">Opening hours</h2>
+                    <p>
+                        Monday – Friday: 7:30am – 6:00pm<br>
+                        Weekends &amp; public holidays: Closed
+                    </p>
+                </div>
+            </div>
+            <p class="footer-bottom">&copy; 2026 Little Sprouts Daycare</p>
+        </div>
+    </footer>
+
+    <!-- Our one shared JavaScript file. It's loaded last so all the HTML above
+         already exists when the script runs. -->
+    <script src="js/main.js"></script>
+</body>
+</html>

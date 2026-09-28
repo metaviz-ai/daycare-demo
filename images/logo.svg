@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <!-- Little Sprouts logo: a green sprout on a soft peach circle.
+         Used in the header and as the little icon in the browser tab. -->
+    <circle cx="32" cy="32" r="32" fill="#fdebdc"/>
+    <path d="M32 50 V30" stroke="#2f7d55" stroke-width="4" stroke-linecap="round"/>
+    <path d="M32 34 C21 34 15 28 15 18 C25 18 32 24 32 34 Z" fill="#5bb585"/>
+    <path d="M32 30 C32 20 38 13 49 13 C49 24 42 30 32 30 Z" fill="#2f7d55"/>
+    <path d="M22 50 H42" stroke="#b5835a" stroke-width="4" stroke-linecap="round"/>
+</svg>

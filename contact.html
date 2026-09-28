@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Page settings: text encoding, mobile-friendly scaling, and the title and
+         description shown in the browser tab and search results -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Little Sprouts Daycare</title>
+    <meta name="description" content="Get in touch with Little Sprouts Daycare to ask a question or book a visit.">
+
+    <!-- Small sprout icon shown in the browser tab -->
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+
+    <!-- Google Fonts: loads "Nunito", a friendly and easy-to-read font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+
+    <!-- Our one shared stylesheet, used by every page -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link: lets keyboard users jump straight past the menu to the page content -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== Site header: logo and main navigation (the same on every page) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html">
+                <img src="images/logo.svg" alt="" width="40" height="40">
+                Little Sprouts Daycare
+            </a>
+
+            <!-- Hamburger button: only shows on small screens. main.js opens and closes the menu. -->
+            <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+            </button>
+
+            <!-- Main navigation. main.js highlights the link for the page you're on. -->
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="about.html">About</a></li>
+                    <li><a class="nav-link" href="programs.html">Programs</a></li>
+                    <li><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== Main content: everything unique to this page goes inside <main> ===== -->
+    <main id="main">
+
+        <!-- Page banner: the title at the top of the Contact page -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>Contact us</h1>
+                <p>Have a question or want to book a visit? Send us a message and we'll get back to you within one working day.</p>
+            </div>
+        </section>
+
+        <!-- Contact section: the enquiry form on one side, our details and map on the other -->
+        <section class="section">
+            <div class="container contact-layout">
+
+                <!-- Enquiry form -->
+                <div class="card">
+                    <h2>Send us an enquiry</h2>
+                    <p class="form-note">Fields marked <span class="required-mark">*</span> are required.</p>
+
+                    <!--
+                        FORMSPREE SETUP (Formspree emails each enquiry to you):
+                        1. Create a free account at https://formspree.io and click "New Form".
+                        2. Formspree gives you a form ID, for example "xyzabcde".
+                        3. Replace YOUR_FORM_ID in the action below with your own ID, like this:
+                           action="https://formspree.io/f/xyzabcde"
+                        Until you do this, the form will not send.
+
+                        How the checking works: each required field has the word "required",
+                        a friendly message in data-error, and an empty error-message paragraph
+                        underneath where main.js shows that message.
+                    -->
+                    <form class="contact-form" action="https://formspree.io/f/mwlpwdvd" method="POST">
+                        <div class="form-group">
+                            <label for="parent-name">Parent's name <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input type="text" id="parent-name" name="parent_name" autocomplete="name" required aria-describedby="parent-name-error" data-error="Please tell us your name.">
+                            <p class="error-message" id="parent-name-error"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email address <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error" data-error="Please enter your email so we can reply to you.">
+                            <p class="error-message" id="email-error"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone number</label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="child-age">Child's age <span class="required-mark" aria-hidden="true">*</span></label>
+                            <select id="child-age" name="child_age" required aria-describedby="child-age-error" data-error="Please choose your child's age.">
+                                <option value="">Please choose…</option>
+                                <option value="Infant">6 weeks – 12 months (Infant)</option>
+                                <option value="Toddler">1 – 3 years (Toddler)</option>
+                                <option value="Preschool">3 – 5 years (Preschool)</option>
+                            </select>
+                            <p class="error-message" id="child-age-error"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="start-date">Preferred start date</label>
+                            <input type="date" id="start-date" name="start_date">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5"></textarea>
+                        </div>
+
+                        <button class="button" type="submit">Send enquiry</button>
+                    </form>
+                </div>
+
+                <!-- Our contact details and map -->
+                <div>
+                    <h2>Visit or call us</h2>
+                    <p>We'd love to show you around. Pop in, give us a call or send us an email.</p>
+                    <!-- Placeholder address: replace with your real one -->
+                    <address>
+                        Little Sprouts Daycare<br>
+                        123 Placeholder Street<br>
+                        Your Town, AB1 2CD
+                    </address>
+                    <p>
+                        Phone: <a href="tel:+15551234567">(555) 123-4567</a><br>
+                        Email: <a href="mailto:hello@example.com">hello@example.com</a><br>
+                        Open Monday – Friday, 7:30am – 6:00pm
+                    </p>
+
+                    <!--
+                        GOOGLE MAPS PLACEHOLDER
+                        To show a real map: open Google Maps, search for your address,
+                        click "Share", then "Embed a map", and copy the <iframe> code.
+                        Paste that code here in place of this whole <div>.
+                    -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54452.70380271189!2d74.19744554863283!3d31.461098100000015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391901f241423651%3A0x515cef622f69a4df!2sLittle%20Bird%20Montessori%20Daycare!5e0!3m2!1sen!2s!4v1790583509479!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Site footer: address, contact details and opening hours (the same on every page) ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-title">Find us</h2>
+                    <!-- Placeholder address: replace with your real one -->
+                    <address>
+                        Little Sprouts Daycare<br>
+                        123 Placeholder Street<br>
+                        Your Town, AB1 2CD
+                    </address>
+                </div>
+                <div>
+                    <h2 class="footer-title">Get in touch</h2>
+                    <p>
+                        Phone: <a href="tel:+15551234567">(555) 123-4567</a><br>
+                        Email: <a href="mailto:hello@example.com">hello@example.com</a>
+                    </p>
+                </div>
+                <div>
+                    <h2 class="footer-title">Opening hours</h2>
+                    <p>
+                        Monday – Friday: 7:30am – 6:00pm<br>
+                        Weekends &amp; public holidays: Closed
+                    </p>
+                </div>
+            </div>
+            <p class="footer-bottom">&copy; 2026 Little Sprouts Daycare</p>
+        </div>
+    </footer>
+
+    <!-- Our one shared JavaScript file. It's loaded last so all the HTML above
+         already exists when the script runs. -->
+    <script src="js/main.js"></script>
+</body>
+</html>

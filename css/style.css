@@ -1,0 +1,658 @@
+/* =========================================================
+   Little Sprouts Daycare — main stylesheet
+   ---------------------------------------------------------
+   This one file styles every page of the site.
+   It is written "mobile first": the styles below are for
+   phones, and the single media query at the very bottom
+   adjusts things for tablets and desktops.
+
+   Sections:
+     1. Colours and design settings
+     2. Base styles
+     3. Layout helpers
+     4. Buttons
+     5. Header and navigation
+     6. Hero and page banners
+     7. Cards
+     8. Testimonial
+     9. Programs page
+    10. Contact page and form
+    11. Footer
+    12. Larger screens (the one media query)
+   ========================================================= */
+
+
+/* ---------- 1. Colours and design settings ----------
+   These are CSS variables. Change a value here and it updates
+   everywhere on the site that uses it. */
+:root {
+    --color-primary: #2f7d55;        /* leaf green: links, buttons, highlights */
+    --color-primary-dark: #22603f;   /* darker green: hover states and footer */
+    --color-accent: #f4a261;         /* warm peach: the "Book a Visit" button */
+    --color-accent-dark: #e8894a;    /* darker peach: accent hover state */
+    --color-background: #fffaf3;     /* soft cream page background */
+    --color-white: #ffffff;          /* cards, header, form fields, button text */
+    --color-tint-green: #e8f4ec;     /* pale green section backgrounds */
+    --color-tint-peach: #fdebdc;     /* pale peach banners and labels */
+    --color-text: #2d2a26;           /* main text: warm near-black */
+    --color-text-muted: #5e5750;     /* softer text for intros and notes */
+    --color-border: #eadfd2;         /* light dividing lines */
+    --color-field-border: #9a8a7a;   /* form field edges (dark enough to see clearly) */
+    --color-error: #b3261e;          /* form error messages */
+
+    --font-main: "Nunito", Arial, sans-serif;
+    --radius: 16px;                  /* rounded corners on cards and images */
+    --radius-small: 10px;            /* rounded corners on buttons and inputs */
+    --shadow: 0 6px 20px rgba(45, 42, 38, 0.08);
+    --max-width: 1100px;             /* widest the content will ever get */
+}
+
+
+/* ---------- 2. Base styles ----------
+   Sensible defaults for the whole site: font, text colour,
+   spacing, and images that never spill off the screen. */
+
+/* Include padding and borders inside an element's width,
+   which makes sizes much easier to predict. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* The header sticks to the top of the screen, so leave room for it
+   when the browser jumps to a link like "programs.html#toddler". */
+html {
+    scroll-padding-top: 5rem;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 0.5em;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p,
+address {
+    margin: 0 0 1em;
+}
+
+/* <address> is italic by default; normal text reads better. */
+address {
+    font-style: normal;
+}
+
+/* Images shrink to fit small screens instead of overflowing. */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* A clear outline shows keyboard users which item is selected. */
+:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* The "Skip to main content" link hides above the page and
+   slides into view only when a keyboard user tabs to it. */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 100;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-small);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+
+/* ---------- 3. Layout helpers ----------
+   Reusable building blocks used on every page. */
+
+/* Keeps content centred with space at the sides,
+   and stops it getting too wide on big screens. */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Breathing room above and below each page section. */
+.section {
+    padding: 3.5rem 0;
+}
+
+/* Every other section gets a soft green background
+   so the page is easy to scan. */
+.section-alt {
+    background-color: var(--color-tint-green);
+}
+
+.section-title {
+    text-align: center;
+}
+
+.section-intro {
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+/* Text beside an image. One column on phones;
+   the media query turns it into two columns on larger screens.
+   minmax(0, 1fr) means "share the space, and shrink if needed".
+   The 0 matters: without it, a big image that is still loading
+   can push the page wider than a phone screen. */
+.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+}
+
+.split-image {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+
+/* ---------- 4. Buttons ----------
+   Rounded "pill" buttons. Add the class "button" to a link
+   or <button>, plus "button-accent" for the peach version. */
+.button {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+}
+
+.button-accent {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+}
+
+.button-accent:hover {
+    background-color: var(--color-accent-dark);
+    color: var(--color-text);
+}
+
+
+/* ---------- 5. Header and navigation ----------
+   The header sticks to the top of the screen as you scroll.
+   On phones the menu hides behind the hamburger button;
+   on larger screens the links sit in a row (see media query). */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(45, 42, 38, 0.08);
+}
+
+/* Logo, hamburger and menu in a flexible row.
+   "wrap" lets the open mobile menu drop onto its own line. */
+.header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+/* flex: 1 lets the logo fill the spare space,
+   which pushes the hamburger and menu to the right. */
+.logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* The hamburger button: three bars drawn with CSS. */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.65rem;
+    border: 2px solid var(--color-field-border);
+    border-radius: var(--radius-small);
+    background-color: var(--color-white);
+    cursor: pointer;
+}
+
+.menu-toggle-bar {
+    width: 24px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--color-primary);
+}
+
+/* On phones the menu stays hidden until main.js adds "is-open". */
+.site-nav {
+    display: none;
+    width: 100%;
+}
+
+.site-nav.is-open {
+    display: block;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-small);
+    color: var(--color-text);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: var(--color-tint-peach);
+    color: var(--color-text);
+}
+
+/* The link for the page you're on (added by main.js). */
+.nav-link.active {
+    background-color: var(--color-tint-green);
+    color: var(--color-primary);
+}
+
+
+/* ---------- 6. Hero and page banners ----------
+   The hero is the big welcome area on the home page.
+   Page banners are the smaller title areas on other pages. */
+.hero,
+.page-banner {
+    padding: 3rem 0;
+    background-color: var(--color-tint-peach);
+}
+
+.hero-intro {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+}
+
+.page-banner {
+    text-align: center;
+}
+
+.page-banner p {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+}
+
+
+/* ---------- 7. Cards ----------
+   White rounded boxes used across the site. The grid shows
+   one card per row on phones and three per row on larger
+   screens (see media query). minmax(0, 1fr) works the same
+   way as in .split above. */
+.card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.card {
+    padding: 1.75rem;
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow);
+}
+
+.card-icon {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+/* Program cards have a photo that runs edge to edge,
+   so the padding moves to the text area underneath. */
+.program-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.program-card-body {
+    padding: 1.5rem;
+}
+
+.program-card a {
+    font-weight: 700;
+}
+
+/* Small rounded label showing a program's age range. */
+.age-range {
+    display: inline-block;
+    padding: 0.2rem 0.9rem;
+    border-radius: 999px;
+    background-color: var(--color-tint-peach);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+/* Staff cards: centred text with a round photo. */
+.staff-card {
+    text-align: center;
+}
+
+.staff-photo {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+}
+
+.staff-role {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+
+/* ---------- 8. Testimonial ----------
+   A single parent quote. The dashed label is a reminder
+   that it's only a sample until you add real ones. */
+.sample-note {
+    width: fit-content;
+    margin: 0 auto 1.5rem;
+    padding: 0.35rem 1rem;
+    border: 2px dashed var(--color-accent-dark);
+    border-radius: 999px;
+    background-color: var(--color-tint-peach);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.testimonial {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonial blockquote {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+}
+
+.testimonial figcaption {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+
+/* ---------- 9. Programs page ----------
+   Each daily schedule is a simple list: the time on the
+   left and the activity on the right. */
+.schedule {
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.schedule li {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--color-border);
+}
+
+.schedule-time {
+    flex: 0 0 5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.program-fees {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-small);
+    background-color: var(--color-tint-peach);
+    font-weight: 700;
+}
+
+
+/* ---------- 10. Contact page and form ---------- */
+
+/* The form and our contact details stack on phones
+   and sit side by side on larger screens (see media query). */
+.contact-layout {
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.form-note {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+/* Each label + field + error message is one "form group". */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+}
+
+.required-mark {
+    color: var(--color-error);
+}
+
+/* Text boxes, the dropdown and the message box share one look. */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-field-border);
+    border-radius: var(--radius-small);
+    background-color: var(--color-white);
+    color: var(--color-text);
+    font: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* main.js marks a field aria-invalid="true" when it needs fixing.
+   Screen readers announce that, and we reuse it to turn the border red. */
+.form-group [aria-invalid="true"] {
+    border-color: var(--color-error);
+}
+
+/* The friendly message shown under a field that needs fixing. */
+.error-message {
+    margin: 0.35rem 0 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-error);
+}
+
+/* Dashed green box that stands in for a Google Map until you add one. */
+.map-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    padding: 1.5rem;
+    border: 3px dashed var(--color-primary);
+    border-radius: var(--radius);
+    background-color: var(--color-tint-green);
+    color: var(--color-primary);
+    text-align: center;
+}
+
+.map-placeholder p {
+    margin: 0;
+}
+
+
+/* ---------- 11. Footer ----------
+   Dark green band at the bottom of every page with our
+   address, contact details and opening hours. */
+.site-footer {
+    padding: 3rem 0 1.5rem;
+    background-color: var(--color-primary-dark);
+    color: var(--color-background);
+}
+
+/* Light links and focus outlines so they show up on dark green. */
+.site-footer a {
+    color: var(--color-white);
+}
+
+.site-footer a:hover {
+    color: var(--color-tint-peach);
+}
+
+.site-footer :focus-visible {
+    outline-color: var(--color-white);
+}
+
+.footer-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.footer-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.footer-bottom {
+    margin: 2rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+
+/* ---------- 12. Larger screens (768px and wider) ----------
+   Everything above is for phones. When the screen is at
+   least 768px wide (tablets and desktops), these rules
+   take over to make use of the extra space. */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.1rem;
+    }
+
+    .section {
+        padding: 5rem 0;
+    }
+
+    .hero,
+    .page-banner {
+        padding: 4.5rem 0;
+    }
+
+    /* Hide the hamburger and always show the menu as a row. */
+    .menu-toggle {
+        display: none;
+    }
+
+    .site-nav {
+        display: block;
+        width: auto;
+    }
+
+    .nav-list {
+        flex-direction: row;
+    }
+
+    /* Put text and image side by side. */
+    .split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3rem;
+    }
+
+    /* Three cards (or footer columns) per row. */
+    .card-grid,
+    .footer-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* The form gets a little more room than the contact details. */
+    .contact-layout {
+        grid-template-columns: 3fr 2fr;
+    }
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Page settings: text encoding, mobile-friendly scaling, and the title and
+         description shown in the browser tab and search results -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Little Sprouts Daycare</title>
+    <meta name="description" content="Meet the Little Sprouts Daycare team and learn about our story and our play-based approach to early learning.">
+
+    <!-- Small sprout icon shown in the browser tab -->
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+
+    <!-- Google Fonts: loads "Nunito", a friendly and easy-to-read font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+
+    <!-- Our one shared stylesheet, used by every page -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link: lets keyboard users jump straight past the menu to the page content -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== Site header: logo and main navigation (the same on every page) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html">
+                <img src="images/logo.svg" alt="" width="40" height="40">
+                Little Sprouts Daycare
+            </a>
+
+            <!-- Hamburger button: only shows on small screens. main.js opens and closes the menu. -->
+            <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+            </button>
+
+            <!-- Main navigation. main.js highlights the link for the page you're on. -->
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="about.html">About</a></li>
+                    <li><a class="nav-link" href="programs.html">Programs</a></li>
+                    <li><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== Main content: everything unique to this page goes inside <main> ===== -->
+    <main id="main">
+
+        <!-- Page banner: the title at the top of the About page -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>About Little Sprouts</h1>
+                <p>A small, friendly daycare where every child is known, loved and encouraged to grow.</p>
+            </div>
+        </section>
+
+        <!-- Our story: how the daycare began, with a photo alongside -->
+        <section class="section">
+            <div class="container split">
+                <div>
+                    <h2>Our story</h2>
+                    <p>Little Sprouts started with a simple idea: children thrive when they feel safe, loved and free to explore. What began as one cosy room and a handful of children has grown into a warm community of local families.</p>
+                    <p>We've grown, but we've kept the small, homely feel that parents love. We know every child by name, and we celebrate every new word, first step and finished painting.</p>
+                </div>
+                <!-- Placeholder image. To use your own photo, save it in the images/ folder
+                     and change src to something like "images/our-building.jpg". -->
+                <img class="split-image" src="https://placehold.co/800x600/fdebdc/2d2a26?text=Our+Daycare" alt="The front of the Little Sprouts Daycare building" width="800" height="600">
+            </div>
+        </section>
+
+        <!-- Our approach: three cards explaining how we care for and teach children -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Our approach</h2>
+                <p class="section-intro">Young children learn best when they're happy, curious and supported. Everything we do is built on three simple ideas.</p>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">🧸</span>
+                        <h3>Learning through play</h3>
+                        <p>Play is how young children make sense of the world. Hands-on activities help them build language, creativity and problem-solving skills.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">🌱</span>
+                        <h3>Every child is unique</h3>
+                        <p>We follow each child's interests and pace, and keep simple notes on their progress so we can plan activities just for them.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">🤝</span>
+                        <h3>Partners with parents</h3>
+                        <p>You know your child best. We share daily updates and photos, and we're always happy to chat at drop-off or pick-up.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our team: three PLACEHOLDER staff cards. Replace the photos, names, roles
+             and descriptions with your real team members. -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Meet our team</h2>
+                <p class="section-intro">Our caring, experienced team is the heart of Little Sprouts.</p>
+
+                <div class="card-grid">
+                    <article class="card staff-card">
+                        <img class="staff-photo" src="https://placehold.co/300x300/e8f4ec/2f7d55?text=Staff+Photo" alt="Photo of Sarah Mitchell" width="300" height="300" loading="lazy">
+                        <h3>Sarah Mitchell</h3>
+                        <p class="staff-role">Centre Manager</p>
+                        <p>Sarah has over 15 years' experience in early years care and makes sure every family feels at home.</p>
+                    </article>
+                    <article class="card staff-card">
+                        <img class="staff-photo" src="https://placehold.co/300x300/e8f4ec/2f7d55?text=Staff+Photo" alt="Photo of James Patel" width="300" height="300" loading="lazy">
+                        <h3>James Patel</h3>
+                        <p class="staff-role">Toddler Room Lead</p>
+                        <p>James loves messy play and music time, and helping toddlers take their first brave steps towards independence.</p>
+                    </article>
+                    <article class="card staff-card">
+                        <img class="staff-photo" src="https://placehold.co/300x300/e8f4ec/2f7d55?text=Staff+Photo" alt="Photo of Amina Yusuf" width="300" height="300" loading="lazy">
+                        <h3>Amina Yusuf</h3>
+                        <p class="staff-role">Preschool Teacher</p>
+                        <p>Amina brings stories to life and helps our oldest children get ready for school with confidence.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Site footer: address, contact details and opening hours (the same on every page) ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-title">Find us</h2>
+                    <!-- Placeholder address: replace with your real one -->
+                    <address>
+                        Little Sprouts Daycare<br>
+                        123 Placeholder Street<br>
+                        Your Town, AB1 2CD
+                    </address>
+                </div>
+                <div>
+                    <h2 class="footer-title">Get in touch</h2>
+                    <p>
+                        Phone: <a href="tel:+15551234567">(555) 123-4567</a><br>
+                        Email: <a href="mailto:hello@example.com">hello@example.com</a>
+                    </p>
+                </div>
+                <div>
+                    <h2 class="footer-title">Opening hours</h2>
+                    <p>
+                        Monday – Friday: 7:30am – 6:00pm<br>
+                        Weekends &amp; public holidays: Closed
+                    </p>
+                </div>
+            </div>
+            <p class="footer-bottom">&copy; 2026 Little Sprouts Daycare</p>
+        </div>
+    </footer>
+
+    <!-- Our one shared JavaScript file. It's loaded last so all the HTML above
+         already exists when the script runs. -->
+    <script src="js/main.js"></script>
+</body>
+</html>
