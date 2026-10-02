@@ -2,23 +2,29 @@
    Little Sprouts Daycare — main stylesheet
    ---------------------------------------------------------
    This one file styles every page of the site.
+   The look is a classic "boxed" school website: a soft blue
+   patterned background, a white page box in the middle, a
+   sky-blue top bar, four bright colour tiles on the home
+   page and a dark footer.
+
    It is written "mobile first": the styles below are for
-   phones, and the single media query at the very bottom
-   adjusts things for tablets and desktops.
+   phones, and the media queries at the very bottom adjust
+   things for tablets and desktops.
 
    Sections:
      1. Colours and design settings
      2. Base styles
      3. Layout helpers
      4. Buttons
-     5. Header and navigation
-     6. Hero and page banners
-     7. Cards
-     8. Testimonial
-     9. Programs page
-    10. Contact page and form
-    11. Footer
-    12. Larger screens (the one media query)
+     5. Top bar, header and navigation
+     6. Hero and page title bar
+     7. Colour tiles (home page)
+     8. Mission, "why choose us" and testimonials
+     9. Cards
+    10. Programs page
+    11. Contact page and form
+    12. Footer
+    13. Larger screens and motion settings (media queries)
    ========================================================= */
 
 
@@ -26,30 +32,44 @@
    These are CSS variables. Change a value here and it updates
    everywhere on the site that uses it. */
 :root {
-    --color-primary: #2f7d55;        /* leaf green: links, buttons, highlights */
-    --color-primary-dark: #22603f;   /* darker green: hover states and footer */
-    --color-accent: #f4a261;         /* warm peach: the "Book a Visit" button */
-    --color-accent-dark: #e8894a;    /* darker peach: accent hover state */
-    --color-background: #fffaf3;     /* soft cream page background */
-    --color-white: #ffffff;          /* cards, header, form fields, button text */
-    --color-tint-green: #e8f4ec;     /* pale green section backgrounds */
-    --color-tint-peach: #fdebdc;     /* pale peach banners and labels */
-    --color-text: #2d2a26;           /* main text: warm near-black */
-    --color-text-muted: #5e5750;     /* softer text for intros and notes */
-    --color-border: #eadfd2;         /* light dividing lines */
-    --color-field-border: #9a8a7a;   /* form field edges (dark enough to see clearly) */
+    --color-primary: #67b7e1;        /* sky blue: top bar, highlights, menu hover */
+    --color-primary-light: #90c9e8;  /* lighter sky blue: top of the button gradient */
+    --color-primary-hover: #5aabd6;  /* deeper sky blue: button hover */
+    --color-primary-dark: #105378;   /* navy blue: button text, links on hover, focus outlines */
+    --color-yellow: #edbf47;         /* sunshine yellow tile */
+    --color-orange: #ec774b;         /* warm orange tile and "Book a Visit" button */
+    --color-orange-dark: #d9653a;    /* darker orange: hover state */
+    --color-green: #6fc191;          /* fresh green tile */
+    --color-coral: #e16c6c;          /* tick icons in the "why choose us" list */
+    --color-whatsapp: #25d366;       /* WhatsApp green: the "Chat on WhatsApp" button */
+    --color-whatsapp-dark: #1ebe5d;  /* darker WhatsApp green: hover state */
+
+    --color-page-bg: #d6ecf8;        /* soft blue behind the white page box */
+    --color-white: #ffffff;          /* page box, cards, form fields */
+    --color-light: #f6f6f6;          /* light grey bands and testimonial bubbles */
+    --color-tint-blue: #eaf5fb;      /* pale blue hero and labels */
+    --color-heading: #333333;        /* headings and menu links */
+    --color-text: #636363;           /* main body text (soft grey, still easy to read) */
+    --color-ink: #1f2a33;            /* dark text on the bright colour tiles */
+    --color-border: #e0dede;         /* thin dividing lines */
+    --color-field-border: #9a9a9a;   /* form field edges (dark enough to see clearly) */
     --color-error: #b3261e;          /* form error messages */
 
-    --font-main: "Nunito", Arial, sans-serif;
-    --radius: 16px;                  /* rounded corners on cards and images */
-    --radius-small: 10px;            /* rounded corners on buttons and inputs */
-    --shadow: 0 6px 20px rgba(45, 42, 38, 0.08);
-    --max-width: 1100px;             /* widest the content will ever get */
+    --color-footer: #2c2d2f;         /* footer background */
+    --color-footer-dark: #232426;    /* copyright bar at the very bottom */
+    --color-footer-heading: #dddddd; /* footer headings */
+    --color-footer-text: #b0adad;    /* footer text */
+
+    --font-heading: "Raleway", Arial, sans-serif;
+    --font-body: "Open Sans", Arial, sans-serif;
+    --radius: 4px;                   /* small, neat rounded corners */
+    --shadow: 0 0 30px rgba(16, 83, 120, 0.15);
+    --max-width: 1170px;             /* widest the content will ever get */
 }
 
 
 /* ---------- 2. Base styles ----------
-   Sensible defaults for the whole site: font, text colour,
+   Sensible defaults for the whole site: fonts, text colour,
    spacing, and images that never spill off the screen. */
 
 /* Include padding and borders inside an element's width,
@@ -60,39 +80,53 @@
     box-sizing: border-box;
 }
 
-/* The header sticks to the top of the screen, so leave room for it
-   when the browser jumps to a link like "programs.html#toddler". */
+/* Leave a little room above a section when the browser jumps
+   to a link like "programs.html#toddler". */
 html {
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 1rem;
+    scroll-behavior: smooth;
 }
 
+/* The page sits on a soft blue background with a gentle
+   pattern of white dots, a bit like a child's wallpaper. */
 body {
     margin: 0;
-    font-family: var(--font-main);
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
     color: var(--color-text);
-    background-color: var(--color-background);
+    background-color: var(--color-page-bg);
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.7) 2px, transparent 2.5px),
+        radial-gradient(rgba(255, 255, 255, 0.45) 2px, transparent 2.5px);
+    background-size: 36px 36px;
+    background-position: 0 0, 18px 18px;
+    background-attachment: fixed;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     margin: 0 0 0.5em;
-    line-height: 1.2;
-    font-weight: 800;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-heading);
 }
 
 h1 {
-    font-size: 2.25rem;
+    font-size: 2.1rem;
+    font-weight: 300;
 }
 
 h2 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
 }
 
 h3 {
     font-size: 1.25rem;
+    font-weight: 600;
 }
 
 p,
@@ -105,6 +139,10 @@ address {
     font-style: normal;
 }
 
+strong {
+    color: var(--color-heading);
+}
+
 /* Images shrink to fit small screens instead of overflowing. */
 img {
     display: block;
@@ -113,16 +151,16 @@ img {
 }
 
 a {
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
 }
 
 a:hover {
-    color: var(--color-primary-dark);
+    color: var(--color-heading);
 }
 
 /* A clear outline shows keyboard users which item is selected. */
 :focus-visible {
-    outline: 3px solid var(--color-primary);
+    outline: 3px solid var(--color-primary-dark);
     outline-offset: 3px;
 }
 
@@ -134,8 +172,8 @@ a:hover {
     left: 1rem;
     z-index: 100;
     padding: 0.5rem 1rem;
-    border-radius: var(--radius-small);
-    background-color: var(--color-primary);
+    border-radius: var(--radius);
+    background-color: var(--color-primary-dark);
     color: var(--color-white);
     font-weight: 700;
 }
@@ -148,6 +186,15 @@ a:hover {
 /* ---------- 3. Layout helpers ----------
    Reusable building blocks used on every page. */
 
+/* The white "box" that holds the whole page. On phones it fills
+   the screen; on big screens the blue background shows at the sides. */
+.page-box {
+    max-width: 1240px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow);
+}
+
 /* Keeps content centred with space at the sides,
    and stops it getting too wide on big screens. */
 .container {
@@ -158,13 +205,13 @@ a:hover {
 
 /* Breathing room above and below each page section. */
 .section {
-    padding: 3.5rem 0;
+    padding: 3rem 0;
 }
 
-/* Every other section gets a soft green background
+/* Every other section gets a light grey background
    so the page is easy to scan. */
 .section-alt {
-    background-color: var(--color-tint-green);
+    background-color: var(--color-light);
 }
 
 .section-title {
@@ -175,7 +222,22 @@ a:hover {
     max-width: 640px;
     margin: 0 auto 2.5rem;
     text-align: center;
-    color: var(--color-text-muted);
+}
+
+/* Heading with a thin line running off to the right,
+   e.g. "Why choose us ————————". */
+.title-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.35rem;
+}
+
+.title-line::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--color-border);
 }
 
 /* Text beside an image. One column on phones;
@@ -191,79 +253,186 @@ a:hover {
 }
 
 .split-image {
+    border: 6px solid var(--color-white);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
 }
 
 
 /* ---------- 4. Buttons ----------
-   Rounded "pill" buttons. Add the class "button" to a link
-   or <button>, plus "button-accent" for the peach version. */
+   Neat, slightly rounded buttons. Add the class "button" to a
+   link or <button> for the sky-blue version, plus:
+     "button-accent"   for the orange version
+     "button-whatsapp" for the green WhatsApp version
+     "button-3d"       for a chunky raised look (used in the footer)
+     "button-block"    to fill the full width */
 .button {
     display: inline-block;
-    padding: 0.85rem 1.75rem;
+    padding: 0.8rem 1.75rem;
     border: none;
-    border-radius: 999px;
+    border-radius: var(--radius);
     background-color: var(--color-primary);
-    color: var(--color-white);
-    font-family: inherit;
-    font-size: 1.05rem;
+    background-image: linear-gradient(to bottom, var(--color-primary-light), var(--color-primary));
+    color: var(--color-primary-dark);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
     font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
 }
 
 .button:hover {
-    background-color: var(--color-primary-dark);
-    color: var(--color-white);
+    background-image: none;
+    background-color: var(--color-primary-hover);
+    color: var(--color-primary-dark);
 }
 
 .button-accent {
-    background-color: var(--color-accent);
-    color: var(--color-text);
+    background-image: none;
+    background-color: var(--color-orange);
+    color: var(--color-ink);
 }
 
 .button-accent:hover {
-    background-color: var(--color-accent-dark);
-    color: var(--color-text);
+    background-color: var(--color-orange-dark);
+    color: var(--color-ink);
+}
+
+/* WhatsApp button: brand green with the WhatsApp logo before the text.
+   Dark text keeps it easy to read on the bright green. */
+.button-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-image: none;
+    background-color: var(--color-whatsapp);
+    color: var(--color-ink);
+}
+
+.button-whatsapp:hover {
+    background-color: var(--color-whatsapp-dark);
+    color: var(--color-ink);
+}
+
+.button-icon {
+    flex-shrink: 0;
+}
+
+/* The raised "3D" look: a darker edge underneath that
+   squashes down when the button is pressed. */
+.button-3d {
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.button-3d:active {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(3px);
+}
+
+.button-block {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+/* Keeps two or more buttons side by side with a gap.
+   "wrap" lets them stack neatly on narrow phone screens. */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
 
-/* ---------- 5. Header and navigation ----------
-   The header sticks to the top of the screen as you scroll.
-   On phones the menu hides behind the hamburger button;
-   on larger screens the links sit in a row (see media query). */
+/* ---------- 5. Top bar, header and navigation ---------- */
+
+/* The thin sky-blue strip at the very top with our
+   phone number, email and opening hours. */
+.top-bar {
+    background-color: var(--color-primary);
+    color: var(--color-ink);
+    font-size: 0.85rem;
+}
+
+.top-bar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.top-bar p {
+    margin: 0;
+}
+
+.top-bar a {
+    color: var(--color-ink);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.top-bar a:hover {
+    text-decoration: underline;
+}
+
+/* The white header with the logo and main menu. */
 .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    border-bottom: 1px solid var(--color-border);
     background-color: var(--color-white);
-    box-shadow: 0 2px 10px rgba(45, 42, 38, 0.08);
 }
 
-/* Logo, hamburger and menu in a flexible row.
+/* Logo and hamburger in a row on phones.
    "wrap" lets the open mobile menu drop onto its own line. */
 .header-inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 /* flex: 1 lets the logo fill the spare space,
-   which pushes the hamburger and menu to the right. */
+   which pushes the hamburger to the right. */
 .logo {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 1.2rem;
-    font-weight: 800;
-    line-height: 1.2;
-    color: var(--color-primary);
+    gap: 0.75rem;
+    color: var(--color-heading);
     text-decoration: none;
+}
+
+.logo img {
+    width: 52px;
+    height: 52px;
+}
+
+.logo-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-primary-dark);
+}
+
+.logo-tagline {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text);
+}
+
+.logo:hover {
+    color: var(--color-heading);
 }
 
 /* The hamburger button: three bars drawn with CSS. */
@@ -272,8 +441,8 @@ a:hover {
     flex-direction: column;
     gap: 5px;
     padding: 0.65rem;
-    border: 2px solid var(--color-field-border);
-    border-radius: var(--radius-small);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
     background-color: var(--color-white);
     cursor: pointer;
 }
@@ -282,7 +451,7 @@ a:hover {
     width: 24px;
     height: 3px;
     border-radius: 3px;
-    background-color: var(--color-primary);
+    background-color: var(--color-heading);
 }
 
 /* On phones the menu stays hidden until main.js adds "is-open". */
@@ -296,9 +465,6 @@ a:hover {
 }
 
 .nav-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -306,57 +472,374 @@ a:hover {
 
 .nav-link {
     display: block;
-    padding: 0.6rem 1rem;
-    border-radius: var(--radius-small);
-    color: var(--color-text);
-    font-weight: 700;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
     text-decoration: none;
 }
 
 .nav-link:hover {
-    background-color: var(--color-tint-peach);
-    color: var(--color-text);
+    background-color: var(--color-tint-blue);
+    color: var(--color-primary-dark);
 }
 
 /* The link for the page you're on (added by main.js). */
 .nav-link.active {
-    background-color: var(--color-tint-green);
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
+    box-shadow: inset 4px 0 0 var(--color-primary);
 }
 
 
-/* ---------- 6. Hero and page banners ----------
-   The hero is the big welcome area on the home page.
-   Page banners are the smaller title areas on other pages. */
-.hero,
-.page-banner {
-    padding: 3rem 0;
-    background-color: var(--color-tint-peach);
+/* ---------- 6. Hero and page title bar ---------- */
+
+/* The welcome area at the top of the home page. */
+.hero {
+    padding: 2.5rem 0;
+    background-color: var(--color-tint-blue);
+}
+
+.hero h1 {
+    font-size: 2.3rem;
 }
 
 .hero-intro {
     margin-bottom: 1.5rem;
-    font-size: 1.2rem;
-    color: var(--color-text-muted);
+    font-size: 1.1rem;
 }
 
-.page-banner {
+/* The grey bar at the top of the other pages: the page
+   title on the left and "Home / Page" breadcrumbs on the right. */
+.page-title-bar {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-light);
+}
+
+.page-title-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+}
+
+.page-title-bar h1 {
+    margin: 0;
+}
+
+.page-title-bar p {
+    flex-basis: 100%;
+    max-width: 640px;
+    margin: 0.5rem 0 0;
+}
+
+.breadcrumbs ol {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    list-style: none;
+}
+
+/* A little "/" between each breadcrumb. */
+.breadcrumbs li + li::before {
+    content: "/";
+    margin-right: 0.5rem;
+}
+
+
+/* ---------- 7. Colour tiles (home page) ----------
+   Four bright tiles that link to the main parts of the site.
+   On computers with a mouse, a tile flips over when you point
+   at it to show a short description and a "View" button
+   (see the media queries at the bottom). On phones and tablets
+   you just tap the tile. */
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.tile {
+    display: block;
+    min-height: 170px;
+    color: var(--color-ink);
+    text-decoration: none;
+    perspective: 1000px;
+}
+
+.tile:hover {
+    color: var(--color-ink);
+}
+
+.tile-inner {
+    position: relative;
+    height: 100%;
+    min-height: inherit;
+}
+
+.tile-front,
+.tile-back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 100%;
+    min-height: inherit;
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius);
     text-align: center;
 }
 
-.page-banner p {
-    max-width: 640px;
-    margin: 0 auto;
-    font-size: 1.15rem;
-    color: var(--color-text-muted);
+/* Each tile's colour comes from the variable set on it. */
+.tile-front,
+.tile-back {
+    background-color: var(--tile-color);
+}
+
+.tile-blue   { --tile-color: var(--color-primary); }
+.tile-yellow { --tile-color: var(--color-yellow); }
+.tile-orange { --tile-color: var(--color-orange); }
+.tile-green  { --tile-color: var(--color-green); }
+
+.tile-icon {
+    width: 44px;
+    height: 44px;
+}
+
+.tile-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-ink);
+}
+
+/* The back of the tile is hidden until the flip is switched on. */
+.tile-back {
+    display: none;
+}
+
+.tile-back p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* The pretend "View" button on the back of each tile. */
+.tile-button {
+    display: inline-block;
+    padding: 0.35rem 1.5rem;
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
 }
 
 
-/* ---------- 7. Cards ----------
-   White rounded boxes used across the site. The grid shows
-   one card per row on phones and three per row on larger
-   screens (see media query). minmax(0, 1fr) works the same
-   way as in .split above. */
+/* ---------- 8. Mission, "why choose us" and testimonials ---------- */
+
+/* Our mission: a big, light quote between two thin lines. */
+.mission {
+    padding: 2rem 0;
+}
+
+.mission-text {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--color-heading);
+    text-align: center;
+}
+
+.mission-text strong {
+    font-weight: 700;
+    color: var(--color-primary-dark);
+}
+
+/* Two columns on large screens: "why choose us" and testimonials. */
+.two-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+}
+
+/* A list with a coral tick in a circle before each item. */
+.check-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.check-list li {
+    position: relative;
+    margin-bottom: 1rem;
+    padding-left: 2.25rem;
+}
+
+.check-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.15rem;
+    left: 0;
+    width: 1.45rem;
+    height: 1.45rem;
+    border-radius: 50%;
+    background-color: var(--color-coral);
+    /* A white tick drawn as a tiny SVG image */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* The dashed reminder that some content is only a sample. */
+.sample-note {
+    width: fit-content;
+    margin: 0 0 1rem;
+    padding: 0.25rem 0.9rem;
+    border: 2px dashed var(--color-orange);
+    border-radius: 999px;
+    background-color: #fdf0ea;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-ink);
+}
+
+.sample-note-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Testimonials: a grey speech bubble with the parent's
+   photo and name underneath. main.js shows one at a time
+   and adds the little dots for switching between them. */
+.testimonial {
+    margin: 0;
+}
+
+/* When main.js is running, only the "current" quote shows. */
+.testimonials.is-rotating .testimonial {
+    display: none;
+}
+
+.testimonials.is-rotating .testimonial.is-current {
+    display: block;
+}
+
+.testimonial + .testimonial {
+    margin-top: 1.5rem;
+}
+
+.testimonials.is-rotating .testimonial + .testimonial {
+    margin-top: 0;
+}
+
+.testimonial blockquote {
+    position: relative;
+    margin: 0 0 1.25rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius);
+    background-color: var(--color-light);
+    font-style: italic;
+}
+
+/* The little triangle that turns the box into a speech bubble. */
+.testimonial blockquote::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 2rem;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: var(--color-light) transparent transparent;
+}
+
+.testimonial figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 1rem;
+}
+
+.testimonial-photo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+.testimonial-name {
+    display: block;
+    font-weight: 700;
+    color: var(--color-heading);
+}
+
+.testimonial-detail {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.testimonial-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding-left: 1rem;
+}
+
+/* Each dot is a real button, so it works with a keyboard too. */
+.testimonial-dot {
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    border: 2px solid var(--color-primary-dark);
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.testimonial-dot[aria-current="true"] {
+    background-color: var(--color-primary-dark);
+}
+
+/* A row of partner / award logos near the bottom of the home page. */
+.logo-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.logo-strip img {
+    margin: 0 auto;
+    opacity: 0.8;
+    filter: grayscale(1);
+}
+
+.logo-strip img:hover {
+    opacity: 1;
+    filter: none;
+}
+
+
+/* ---------- 9. Cards ----------
+   White boxes used across the site. The grid shows one card
+   per row on phones and three per row on larger screens
+   (see media queries). minmax(0, 1fr) works the same way
+   as in .split above. */
 .card-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -365,16 +848,26 @@ a:hover {
 
 .card {
     padding: 1.75rem;
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-primary);
     border-radius: var(--radius);
     background-color: var(--color-white);
-    box-shadow: var(--shadow);
 }
 
 .card-icon {
     display: block;
     margin-bottom: 0.75rem;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     line-height: 1;
+}
+
+/* Give each card in a row its own tile colour along the top. */
+.card-grid > .card:nth-child(3n + 2) {
+    border-top-color: var(--color-yellow);
+}
+
+.card-grid > .card:nth-child(3n + 3) {
+    border-top-color: var(--color-green);
 }
 
 /* Program cards have a photo that runs edge to edge,
@@ -392,14 +885,15 @@ a:hover {
     font-weight: 700;
 }
 
-/* Small rounded label showing a program's age range. */
+/* Small label showing a program's age range. */
 .age-range {
     display: inline-block;
-    padding: 0.2rem 0.9rem;
-    border-radius: 999px;
-    background-color: var(--color-tint-peach);
-    font-size: 0.95rem;
+    padding: 0.15rem 0.85rem;
+    border-radius: var(--radius);
+    background-color: var(--color-tint-blue);
+    font-size: 0.9rem;
     font-weight: 700;
+    color: var(--color-primary-dark);
 }
 
 /* Staff cards: centred text with a round photo. */
@@ -411,48 +905,17 @@ a:hover {
     width: 160px;
     height: 160px;
     margin: 0 auto 1rem;
+    border: 5px solid var(--color-tint-blue);
     border-radius: 50%;
 }
 
 .staff-role {
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
     font-weight: 700;
 }
 
 
-/* ---------- 8. Testimonial ----------
-   A single parent quote. The dashed label is a reminder
-   that it's only a sample until you add real ones. */
-.sample-note {
-    width: fit-content;
-    margin: 0 auto 1.5rem;
-    padding: 0.35rem 1rem;
-    border: 2px dashed var(--color-accent-dark);
-    border-radius: 999px;
-    background-color: var(--color-tint-peach);
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-align: center;
-}
-
-.testimonial {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.testimonial blockquote {
-    margin: 0 0 1rem;
-    font-size: 1.25rem;
-}
-
-.testimonial figcaption {
-    color: var(--color-primary);
-    font-weight: 700;
-}
-
-
-/* ---------- 9. Programs page ----------
+/* ---------- 10. Programs page ----------
    Each daily schedule is a simple list: the time on the
    left and the activity on the right. */
 .schedule {
@@ -471,21 +934,21 @@ a:hover {
 .schedule-time {
     flex: 0 0 5rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
 }
 
 .program-fees {
     padding: 0.75rem 1rem;
-    border-radius: var(--radius-small);
-    background-color: var(--color-tint-peach);
+    border-left: 4px solid var(--color-orange);
+    background-color: var(--color-light);
     font-weight: 700;
 }
 
 
-/* ---------- 10. Contact page and form ---------- */
+/* ---------- 11. Contact page and form ---------- */
 
 /* The form and our contact details stack on phones
-   and sit side by side on larger screens (see media query). */
+   and sit side by side on larger screens (see media queries). */
 .contact-layout {
     display: grid;
     gap: 2.5rem;
@@ -494,7 +957,6 @@ a:hover {
 
 .form-note {
     font-size: 0.95rem;
-    color: var(--color-text-muted);
 }
 
 /* Each label + field + error message is one "form group". */
@@ -506,6 +968,7 @@ a:hover {
     display: block;
     margin-bottom: 0.35rem;
     font-weight: 700;
+    color: var(--color-heading);
 }
 
 .required-mark {
@@ -517,11 +980,11 @@ a:hover {
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--color-field-border);
-    border-radius: var(--radius-small);
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--color-field-border);
+    border-radius: var(--radius);
     background-color: var(--color-white);
-    color: var(--color-text);
+    color: var(--color-heading);
     font: inherit;
 }
 
@@ -532,7 +995,7 @@ a:hover {
 /* main.js marks a field aria-invalid="true" when it needs fixing.
    Screen readers announce that, and we reuse it to turn the border red. */
 .form-group [aria-invalid="true"] {
-    border-color: var(--color-error);
+    border: 2px solid var(--color-error);
 }
 
 /* The friendly message shown under a field that needs fixing. */
@@ -543,86 +1006,165 @@ a:hover {
     color: var(--color-error);
 }
 
-/* Dashed green box that stands in for a Google Map until you add one. */
-.map-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 260px;
-    padding: 1.5rem;
-    border: 3px dashed var(--color-primary);
+.map {
+    display: block;
+    width: 100%;
+    height: 380px;
+    border: 0;
     border-radius: var(--radius);
-    background-color: var(--color-tint-green);
-    color: var(--color-primary);
-    text-align: center;
-}
-
-.map-placeholder p {
-    margin: 0;
 }
 
 
-/* ---------- 11. Footer ----------
-   Dark green band at the bottom of every page with our
-   address, contact details and opening hours. */
+/* ---------- 12. Footer ----------
+   Dark band at the bottom of every page with quick buttons,
+   menu links, opening hours and our contact details. */
 .site-footer {
-    padding: 3rem 0 1.5rem;
-    background-color: var(--color-primary-dark);
-    color: var(--color-background);
+    padding: 3rem 0 0;
+    background-color: var(--color-footer);
+    color: var(--color-footer-text);
+    font-size: 0.95rem;
 }
 
-/* Light links and focus outlines so they show up on dark green. */
 .site-footer a {
-    color: var(--color-white);
+    color: var(--color-footer-heading);
+    text-decoration: none;
 }
 
 .site-footer a:hover {
-    color: var(--color-tint-peach);
+    color: var(--color-primary);
+    text-decoration: underline;
 }
 
 .site-footer :focus-visible {
     outline-color: var(--color-white);
 }
 
+/* Footer buttons keep their own colours, not the light link colour. */
+.site-footer .button {
+    color: var(--color-primary-dark);
+    text-decoration: none;
+}
+
+.site-footer .button-accent,
+.site-footer .button-whatsapp {
+    color: var(--color-ink);
+}
+
 .footer-grid {
     display: grid;
-    gap: 1.5rem;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
 }
 
 .footer-title {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-footer-heading);
 }
 
+.footer-buttons {
+    display: grid;
+    gap: 1rem;
+}
+
+/* The footer menu: one link per line with a thin divider. */
+.footer-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-links li {
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-links a::before {
+    content: "›";
+    margin-right: 0.5rem;
+    color: var(--color-primary);
+}
+
+/* The copyright bar at the very bottom, with "Back to top". */
 .footer-bottom {
-    margin: 2rem 0 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 0.9rem;
-    text-align: center;
+    background-color: var(--color-footer-dark);
+    font-size: 0.85rem;
+}
+
+.footer-bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.back-to-top {
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 
-/* ---------- 12. Larger screens (768px and wider) ----------
-   Everything above is for phones. When the screen is at
-   least 768px wide (tablets and desktops), these rules
+/* ---------- 13. Larger screens and motion settings ---------- */
+
+/* Tablets and desktops (768px and wider): these rules
    take over to make use of the extra space. */
 @media (min-width: 768px) {
     h1 {
-        font-size: 3rem;
+        font-size: 2.6rem;
     }
 
     h2 {
-        font-size: 2.1rem;
+        font-size: 1.9rem;
     }
 
     .section {
-        padding: 5rem 0;
+        padding: 4rem 0;
     }
 
-    .hero,
-    .page-banner {
-        padding: 4.5rem 0;
+    .hero {
+        padding: 3.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .top-bar-inner {
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    /* Logo in the middle with the menu centred underneath,
+       just like a classic school website. */
+    .header-inner {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 0;
+    }
+
+    .logo {
+        flex: none;
+    }
+
+    .logo img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .logo-name {
+        font-size: 1.9rem;
     }
 
     /* Hide the hamburger and always show the menu as a row. */
@@ -632,27 +1174,128 @@ a:hover {
 
     .site-nav {
         display: block;
-        width: auto;
     }
 
     .nav-list {
-        flex-direction: row;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* A coloured line slides in above the link you point at. */
+    .nav-link {
+        padding: 1rem 1.25rem 1.1rem;
+        border-top: 3px solid transparent;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.875rem;
+    }
+
+    .nav-link:hover {
+        border-top-color: var(--color-primary);
+        background-color: transparent;
+    }
+
+    .nav-link.active {
+        border-top-color: var(--color-primary);
+        box-shadow: none;
+    }
+
+    .tiles {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    .tile {
+        min-height: 200px;
+    }
+
+    .mission-text {
+        font-size: 1.6rem;
     }
 
     /* Put text and image side by side. */
-    .split {
+    .split,
+    .two-columns {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 3rem;
     }
 
-    /* Three cards (or footer columns) per row. */
-    .card-grid,
-    .footer-grid {
+    /* Three cards per row. */
+    .card-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .logo-strip {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    /* Four footer columns. */
+    .footer-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     /* The form gets a little more room than the contact details. */
     .contact-layout {
         grid-template-columns: 3fr 2fr;
+    }
+}
+
+/* Big screens: leave a gap above and below the page box
+   so the blue background shows all the way round. */
+@media (min-width: 1280px) {
+    .page-box {
+        margin: 2rem auto;
+    }
+}
+
+/* Devices with a mouse: the colour tiles flip over on hover
+   (or when tabbed to with the keyboard). */
+@media (hover: hover) {
+    .tile-inner {
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+
+    .tile:hover .tile-inner,
+    .tile:focus-visible .tile-inner {
+        transform: rotateY(180deg);
+    }
+
+    .tile-front,
+    .tile-back {
+        backface-visibility: hidden;
+    }
+
+    .tile-back {
+        display: flex;
+        position: absolute;
+        inset: 0;
+        transform: rotateY(180deg);
+    }
+}
+
+/* People who've asked their device for less motion get a gentle
+   fade instead of the flip, and no smooth scrolling. */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .tile-inner,
+    .tile:hover .tile-inner,
+    .tile:focus-visible .tile-inner {
+        transition: none;
+        transform: none;
+    }
+
+    .tile-back {
+        transform: none;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .tile:hover .tile-back,
+    .tile:focus-visible .tile-back {
+        opacity: 1;
     }
 }

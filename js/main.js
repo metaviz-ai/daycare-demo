@@ -1,10 +1,11 @@
 /* =========================================================
    Little Sprouts Daycare — main JavaScript
    ---------------------------------------------------------
-   This one file is shared by every page. It does three jobs:
+   This one file is shared by every page. It does four jobs:
      1. Opens and closes the mobile (hamburger) menu
      2. Highlights the current page in the navigation
      3. Checks the contact form before it is sent
+     4. Shows parent testimonials one at a time (home page)
    ========================================================= */
 
 
@@ -115,4 +116,70 @@ if (contactForm) {
             }
         });
     });
+}
+
+
+/* ---------- 4. Testimonials, one at a time ----------
+   On the home page, show one parent quote at a time with
+   a row of dots underneath to pick a different one. The
+   quotes also change by themselves every 8 seconds, but
+   stop while you're pointing at or tabbed into them, and
+   don't move at all if your device is set to reduce motion.
+   Without JavaScript, all the quotes simply show in a list. */
+const testimonialList = document.querySelector(".testimonials");
+
+if (testimonialList) {
+    const testimonials = testimonialList.querySelectorAll(".testimonial");
+    const dotsRow = document.createElement("div");
+    const dots = [];
+    let current = 0;
+    let isPaused = false;
+
+    // Shows the quote at position "index" and lights up its dot.
+    function showTestimonial(index) {
+        testimonials[current].classList.remove("is-current");
+        dots[current].removeAttribute("aria-current");
+        current = index;
+        testimonials[current].classList.add("is-current");
+        dots[current].setAttribute("aria-current", "true");
+    }
+
+    // Make one dot button for each quote.
+    dotsRow.className = "testimonial-dots";
+    testimonials.forEach(function (testimonial, index) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "testimonial-dot";
+        dot.setAttribute("aria-label", "Show testimonial " + (index + 1) + " of " + testimonials.length);
+        dot.addEventListener("click", function () {
+            showTestimonial(index);
+        });
+        dots.push(dot);
+        dotsRow.appendChild(dot);
+    });
+
+    // Only rotate if there's more than one quote to show.
+    if (testimonials.length > 1) {
+        testimonialList.after(dotsRow);
+        testimonialList.classList.add("is-rotating");
+        testimonials[0].classList.add("is-current");
+        dots[0].setAttribute("aria-current", "true");
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const testimonialArea = testimonialList.parentElement;
+
+        // Pause while the visitor is reading (mouse over) or using the dots (keyboard focus).
+        testimonialArea.addEventListener("mouseenter", function () { isPaused = true; });
+        testimonialArea.addEventListener("mouseleave", function () { isPaused = false; });
+        testimonialArea.addEventListener("focusin", function () { isPaused = true; });
+        testimonialArea.addEventListener("focusout", function () { isPaused = false; });
+
+        if (!reduceMotion) {
+            setInterval(function () {
+                if (!isPaused) {
+                    showTestimonial((current + 1) % testimonials.length);
+                }
+            }, 8000);
+        }
+    }
 }

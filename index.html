@@ -11,10 +11,10 @@
     <!-- Small sprout icon shown in the browser tab -->
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
 
-    <!-- Google Fonts: loads "Nunito", a friendly and easy-to-read font -->
+    <!-- Google Fonts: "Raleway" for headings and the menu, "Open Sans" for body text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;600;700&display=swap">
 
     <!-- Our one shared stylesheet, used by every page -->
     <link rel="stylesheet" href="css/style.css">
@@ -23,12 +23,28 @@
     <!-- Skip link: lets keyboard users jump straight past the menu to the page content -->
     <a class="skip-link" href="#main">Skip to main content</a>
 
+    <!-- The white "page box" that holds everything. On big screens the
+         blue patterned background shows around it. -->
+    <div class="page-box">
+
+    <!-- ===== Top bar: quick contact details (the same on every page) ===== -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <!-- Placeholder phone and email: replace with your real ones -->
+            <p>Call <a href="tel:+15551234567">(555) 123-4567</a> &nbsp;|&nbsp; <a href="mailto:hello@example.com">hello@example.com</a></p>
+            <p>Open Monday – Friday, 7:30am – 6:00pm</p>
+        </div>
+    </div>
+
     <!-- ===== Site header: logo and main navigation (the same on every page) ===== -->
     <header class="site-header">
         <div class="container header-inner">
             <a class="logo" href="index.html">
-                <img src="images/logo.svg" alt="" width="40" height="40">
-                Little Sprouts Daycare
+                <img src="images/logo.svg" alt="" width="64" height="64">
+                <span>
+                    <span class="logo-name">Little Sprouts</span>
+                    <span class="logo-tagline">Daycare &amp; Preschool</span>
+                </span>
             </a>
 
             <!-- Hamburger button: only shows on small screens. main.js opens and closes the menu. -->
@@ -42,9 +58,9 @@
             <nav class="site-nav" id="site-nav" aria-label="Main">
                 <ul class="nav-list">
                     <li><a class="nav-link" href="index.html">Home</a></li>
-                    <li><a class="nav-link" href="about.html">About</a></li>
+                    <li><a class="nav-link" href="about.html">About Us</a></li>
                     <li><a class="nav-link" href="programs.html">Programs</a></li>
-                    <li><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li><a class="nav-link" href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -57,39 +73,154 @@
         <section class="hero">
             <div class="container split">
                 <div>
-                    <h1>A happy place to learn, play and grow</h1>
+                    <h1>A happy place to learn</h1>
                     <p class="hero-intro">At Little Sprouts, children aged 6 weeks to 5 years spend their days feeling safe, loved and busy exploring, so you can head to work knowing they're in caring hands.</p>
-                    <a class="button button-accent" href="contact.html">Book a Visit</a>
+                    <div class="button-group">
+                        <a class="button button-accent" href="contact.html">Book a Visit</a>
+                        <!-- WhatsApp chat link. Placeholder number: replace 15551234567 with your
+                             real WhatsApp number in international format (digits only, no + or spaces).
+                             The text after "?text=" is the message that appears ready to send. -->
+                        <a class="button button-whatsapp" href="https://wa.me/15551234567?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20Little%20Sprouts%20Daycare." target="_blank" rel="noopener">
+                            <svg class="button-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+                                <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                            </svg>
+                            Chat on WhatsApp
+                        </a>
+                    </div>
                 </div>
                 <!-- Placeholder image. To use your own photo, save it in the images/ folder
                      and change src to something like "images/hero.jpg". -->
-                <img class="split-image" src="https://placehold.co/800x600/e8f4ec/2f7d55?text=Children+at+Play" alt="Children playing together in a bright classroom" width="800" height="600">
+                <img class="split-image" src="https://placehold.co/800x600/ffffff/105378?text=Children+at+Play" alt="Children playing together in a bright classroom" width="800" height="600">
             </div>
         </section>
 
-        <!-- Why choose us: three cards with the main reasons parents pick Little Sprouts -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Why choose us?</h2>
-                <p class="section-intro">Choosing childcare is a big decision. Here's what makes Little Sprouts feel like a second home.</p>
+        <!-- Colour tiles: four bright boxes linking to the main parts of the site.
+             With a mouse, each one flips over to show a short note and a "View" label. -->
+        <section aria-label="Explore Little Sprouts">
+            <div class="container tiles">
+                <a class="tile tile-blue" href="about.html">
+                    <div class="tile-inner">
+                        <div class="tile-front">
+                            <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <h2 class="tile-title">About Us</h2>
+                        </div>
+                        <div class="tile-back">
+                            <p>Our story, our approach and the team who care for your child.</p>
+                            <span class="tile-button" aria-hidden="true">VIEW</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="tile tile-yellow" href="programs.html">
+                    <div class="tile-inner">
+                        <div class="tile-front">
+                            <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            </svg>
+                            <h2 class="tile-title">Programs</h2>
+                        </div>
+                        <div class="tile-back">
+                            <p>Infant, Toddler and Preschool rooms, with a typical day for each.</p>
+                            <span class="tile-button" aria-hidden="true">VIEW</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="tile tile-orange" href="contact.html">
+                    <div class="tile-inner">
+                        <div class="tile-front">
+                            <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                            <h2 class="tile-title">Book a Visit</h2>
+                        </div>
+                        <div class="tile-back">
+                            <p>Come and see us. Send an enquiry and we'll reply within one working day.</p>
+                            <span class="tile-button" aria-hidden="true">VIEW</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="tile tile-green" href="#testimonials">
+                    <div class="tile-inner">
+                        <div class="tile-front">
+                            <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            </svg>
+                            <h2 class="tile-title">Testimonials</h2>
+                        </div>
+                        <div class="tile-back">
+                            <p>Hear what Little Sprouts parents have to say about us.</p>
+                            <span class="tile-button" aria-hidden="true">VIEW</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-                <div class="card-grid">
-                    <article class="card">
-                        <span class="card-icon" aria-hidden="true">💛</span>
-                        <h3>Caring, qualified team</h3>
-                        <p>Our friendly staff are fully trained in early years education, first aid and child safety.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-icon" aria-hidden="true">🏡</span>
-                        <h3>Safe, welcoming spaces</h3>
-                        <p>Bright, secure rooms and a fenced garden designed just for little ones to explore.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-icon" aria-hidden="true">🎨</span>
-                        <h3>Learning through play</h3>
-                        <p>Stories, music, art and outdoor adventures that build confidence and curiosity every day.</p>
-                    </article>
+        <!-- Our mission: one big sentence that sums up what we're about -->
+        <section class="mission">
+            <div class="container">
+                <p class="mission-text">Our mission at <strong>Little Sprouts</strong> is to give every child a safe, loving and playful start, where curiosity is encouraged and each child grows at their own pace.</p>
+            </div>
+        </section>
+
+        <!-- Two columns: "Why choose us" on the left, parent testimonials on the right -->
+        <section class="section">
+            <div class="container two-columns">
+
+                <div>
+                    <h2 class="title-line">Why choose us</h2>
+                    <ul class="check-list">
+                        <li><strong>A caring, qualified team</strong> fully trained in early years education, first aid and child safety.</li>
+                        <li><strong>Safe, welcoming spaces:</strong> bright, secure rooms and a fenced garden designed just for little ones.</li>
+                        <li><strong>Learning through play</strong> with stories, music, art and outdoor adventures every day.</li>
+                        <li><strong>Care for every stage</strong> from 6 weeks to 5 years, in rooms matched to your child's age.</li>
+                        <li><strong>Daily updates and photos</strong> so you always know how your child's day is going.</li>
+                        <li><strong>Open 7:30am – 6:00pm</strong>, Monday to Friday, to fit around your working day.</li>
+                    </ul>
                 </div>
+
+                <!-- Testimonials: THESE ARE SAMPLES. Replace the quotes, names and photos with
+                     real feedback from parents (and ask their permission first).
+                     main.js shows one at a time and adds dots to switch between them. -->
+                <div id="testimonials">
+                    <h2 class="title-line">Parent testimonials</h2>
+                    <p class="sample-note">Sample testimonials — replace with real ones</p>
+
+                    <div class="testimonials">
+                        <figure class="testimonial">
+                            <blockquote>“Our daughter runs in every morning with a big smile. The team keeps us updated all day, and we always know she's safe and happy.”</blockquote>
+                            <figcaption>
+                                <img class="testimonial-photo" src="https://placehold.co/100x100/eaf5fb/105378?text=SP" alt="" width="100" height="100" loading="lazy">
+                                <span>
+                                    <span class="testimonial-name">Sample Parent</span>
+                                    <span class="testimonial-detail">Parent of a 2-year-old</span>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="testimonial">
+                            <blockquote>“The preschool room has been wonderful for our son. He's learned so much, made great friends and is really excited about starting school.”</blockquote>
+                            <figcaption>
+                                <img class="testimonial-photo" src="https://placehold.co/100x100/fdf3dc/7a5a00?text=SP" alt="" width="100" height="100" loading="lazy">
+                                <span>
+                                    <span class="testimonial-name">Sample Parent</span>
+                                    <span class="testimonial-detail">Parent of a 4-year-old</span>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="testimonial">
+                            <blockquote>“Leaving our baby for the first time was hard, but the infant team made it so easy. They follow her routine exactly as we do at home.”</blockquote>
+                            <figcaption>
+                                <img class="testimonial-photo" src="https://placehold.co/100x100/e6f5ec/1f6b40?text=SP" alt="" width="100" height="100" loading="lazy">
+                                <span>
+                                    <span class="testimonial-name">Sample Parent</span>
+                                    <span class="testimonial-detail">Parent of a 9-month-old</span>
+                                </span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -101,7 +232,7 @@
 
                 <div class="card-grid">
                     <article class="card program-card">
-                        <img src="https://placehold.co/600x400/fdebdc/2d2a26?text=Infant+Room" alt="Cosy infant room with soft play mats and toys" width="600" height="400" loading="lazy">
+                        <img src="https://placehold.co/600x400/eaf5fb/105378?text=Infant+Room" alt="Cosy infant room with soft play mats and toys" width="600" height="400" loading="lazy">
                         <div class="program-card-body">
                             <h3>Infant</h3>
                             <p class="age-range">6 weeks – 12 months</p>
@@ -110,7 +241,7 @@
                         </div>
                     </article>
                     <article class="card program-card">
-                        <img src="https://placehold.co/600x400/fdebdc/2d2a26?text=Toddler+Room" alt="Toddlers building with colourful blocks" width="600" height="400" loading="lazy">
+                        <img src="https://placehold.co/600x400/fdf3dc/7a5a00?text=Toddler+Room" alt="Toddlers building with colourful blocks" width="600" height="400" loading="lazy">
                         <div class="program-card-body">
                             <h3>Toddler</h3>
                             <p class="age-range">1 – 3 years</p>
@@ -119,7 +250,7 @@
                         </div>
                     </article>
                     <article class="card program-card">
-                        <img src="https://placehold.co/600x400/fdebdc/2d2a26?text=Preschool+Room" alt="Preschoolers reading a picture book together" width="600" height="400" loading="lazy">
+                        <img src="https://placehold.co/600x400/e6f5ec/1f6b40?text=Preschool+Room" alt="Preschoolers reading a picture book together" width="600" height="400" loading="lazy">
                         <div class="program-card-body">
                             <h3>Preschool</h3>
                             <p class="age-range">3 – 5 years</p>
@@ -131,53 +262,82 @@
             </div>
         </section>
 
-        <!-- Testimonial: THIS IS A SAMPLE. Replace the quote and name with real feedback
-             from a parent (and ask their permission first). -->
+        <!-- Logo strip: PLACEHOLDER logos. Replace each image with the logo of a body
+             you're registered with, an award you've won, or a partner you work with.
+             Update the alt text to the organisation's name. -->
         <section class="section">
             <div class="container">
-                <h2 class="section-title">What parents say</h2>
-                <p class="sample-note">Sample testimonial — replace with real ones</p>
-
-                <figure class="card testimonial">
-                    <blockquote>“Our daughter runs in every morning with a big smile. The team keeps us updated all day, and we always know she's safe and happy.”</blockquote>
-                    <figcaption>— Sample Parent, parent of a 2-year-old</figcaption>
-                </figure>
+                <p class="sample-note sample-note-center">Sample logos — replace with your registrations, awards or partners</p>
+                <div class="logo-strip">
+                    <img src="https://placehold.co/200x90/f6f6f6/747474?text=Your+Logo" alt="Partner logo placeholder" width="200" height="90" loading="lazy">
+                    <img src="https://placehold.co/200x90/f6f6f6/747474?text=Your+Logo" alt="Partner logo placeholder" width="200" height="90" loading="lazy">
+                    <img src="https://placehold.co/200x90/f6f6f6/747474?text=Your+Logo" alt="Partner logo placeholder" width="200" height="90" loading="lazy">
+                    <img src="https://placehold.co/200x90/f6f6f6/747474?text=Your+Logo" alt="Partner logo placeholder" width="200" height="90" loading="lazy">
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- ===== Site footer: address, contact details and opening hours (the same on every page) ===== -->
+    <!-- ===== Site footer: quick buttons, menu, opening hours and contact details (the same on every page) ===== -->
     <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h2 class="footer-title">Find us</h2>
-                    <!-- Placeholder address: replace with your real one -->
-                    <address>
-                        Little Sprouts Daycare<br>
-                        123 Placeholder Street<br>
-                        Your Town, AB1 2CD
-                    </address>
-                </div>
-                <div>
-                    <h2 class="footer-title">Get in touch</h2>
-                    <p>
-                        Phone: <a href="tel:+15551234567">(555) 123-4567</a><br>
-                        Email: <a href="mailto:hello@example.com">hello@example.com</a>
-                    </p>
-                </div>
-                <div>
-                    <h2 class="footer-title">Opening hours</h2>
-                    <p>
-                        Monday – Friday: 7:30am – 6:00pm<br>
-                        Weekends &amp; public holidays: Closed
-                    </p>
+        <div class="container footer-grid">
+            <div>
+                <h2 class="footer-title">Get started</h2>
+                <div class="footer-buttons">
+                    <a class="button button-3d button-block" href="contact.html">Book a Visit</a>
+                    <a class="button button-accent button-3d button-block" href="programs.html">Our Programs</a>
+                    <!-- Placeholder WhatsApp number: replace 15551234567 with your real one (digits only) -->
+                    <a class="button button-whatsapp button-3d button-block" href="https://wa.me/15551234567?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20Little%20Sprouts%20Daycare." target="_blank" rel="noopener">
+                        <svg class="button-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+                            <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        WhatsApp
+                    </a>
                 </div>
             </div>
-            <p class="footer-bottom">&copy; 2026 Little Sprouts Daycare</p>
+            <div>
+                <h2 class="footer-title">More about us</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#team">Our Team</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Opening hours</h2>
+                <p>
+                    Monday – Friday<br>
+                    7:30am – 6:00pm
+                </p>
+                <p>Closed weekends &amp; public holidays</p>
+            </div>
+            <div>
+                <h2 class="footer-title">Contact info</h2>
+                <!-- Placeholder address, phone and email: replace with your real ones -->
+                <address>
+                    123 Placeholder Street<br>
+                    Your Town, AB1 2CD
+                </address>
+                <p>
+                    Phone: <a href="tel:+15551234567">(555) 123-4567</a><br>
+                    Email: <a href="mailto:hello@example.com">hello@example.com</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright bar -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Little Sprouts Daycare. All rights reserved.</p>
+                <a class="back-to-top" href="#main">Back to top ↑</a>
+            </div>
         </div>
     </footer>
+
+    </div><!-- end of .page-box -->
 
     <!-- Our one shared JavaScript file. It's loaded last so all the HTML above
          already exists when the script runs. -->
